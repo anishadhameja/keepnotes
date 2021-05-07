@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <%- include('../partials/navbar'); %>
+        <main class="container">
+            <div class="p-5 rounded" style="background-color: #F3EBF6;">
+
+                <h3 class="text-center" style="color: blueviolet;">My Notes</h3>
+                <!-- <h5 class="text-success text-center">{{delete_status}}</h5> -->
+                <div class="row row-cols-1 row-cols-md-4 g-5">
+                    <%if (records !==null){ %>
+                        <% records.forEach(function(row){ %>
+                            <div class="col">
+                                <div class="card border-dark h-100" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <strong><%= row.title %></strong>
+                                        </p>
+                                        <p class="card-text">Date: <%= row.dateofnote %>
+                                        </p>
+                                        <p class="card-text">Time: <%= row.timeofnote %>
+                                        </p>
+                                        <a href="/view?id=<%= row.id %>" class="btn" style="background-color: palevioletred;" role="button">Edit</a>
+                                        <button onclick="myFunction('<%= row.id %>','<%= row.title %>')"
+                                            class="btn" style="background-color:darkmagenta;">Delete</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <% })}%>
+                </div>
+
+            </div>
+
+        </main>
+        
+</body>
+<script>
+    function myFunction(id, title) {
+        var c = confirm("Are you sure you want to delete "+title+"?");
+        if (c) {
+            window.location.replace("/delete?id="+id);
+        }
+    }
+</script>
+
+</html>

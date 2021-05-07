@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/insert.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <title>EditNotes</title>
+</head>
+
+<body>
+  <%- include('../partials/navbar'); %>
+    <br><br>
+    <div class="container">
+      <form action="/view" method="POST">
+        <label for="lname">Title</label>
+        <%if (records !==null){ %>
+          <input type="text" id="title" name="title" placeholder="" value="<%= records[0].title %>">
+          <input type="hidden" name="id" value="<%= records[0].id %>">
+          <label for="subject">Message</label>
+          <textarea id="subject" name="subject" style="height:200px"><%= records[0].message %></textarea>
+          <a class="btn btn-secondary" role="button" href="/home"> Back </a>
+          <input type="submit" value="Save Changes">
+          <% } %>
+      </form>
+    </div>
+</body>
+
+</html>
